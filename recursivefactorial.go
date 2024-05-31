@@ -9,6 +9,6 @@ func RecursiveFactorial(nb int) int {
 		}
 	}
 	var result int
-	result = nb * RecursiveFactorial(nb - 1)
+	result = nb * RecursiveFactorial(nb-1)
 	return result
 }
