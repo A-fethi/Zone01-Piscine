@@ -2,32 +2,31 @@ package main
 
 import "github.com/01-edu/z01"
 
-func convert(arr [10]byte) {
+func PrintMemory(arr [10]byte) {
 	base := "0123456789abcdef"
-	i := 0
-	for ; i < len(arr); i++ {
-		n := int(arr[i]) / len(base)
-		z01.PrintRune(rune(base[n]))
-		index := int(arr[i]) % len(base)
-		z01.PrintRune(rune(base[index]))
-		if !(i == 3 || i == 7) {
+
+	for i := 0; i < len(arr); i++ {
+		div := string(base[arr[i]/16])
+		mod := string(base[arr[i]%16])
+		z01.PrintRune([]rune(div)[0])
+		z01.PrintRune([]rune(mod)[0])
+		if (i+1)%4 == 0 {
+			z01.PrintRune('\n')
+		} else if i != len(arr)-1 {
 			z01.PrintRune(' ')
 		}
-		if i == 3 || i == 7 || i == 9 {
-			z01.PrintRune('\n')
+	}
+	z01.PrintRune('\n')
+	for _, char := range arr {
+		if char > ' ' && char < '~' {
+			z01.PrintRune(rune(char))
+			continue
 		}
+		z01.PrintRune('.')
 	}
 	z01.PrintRune('\n')
 }
 
-func PrintMemory(arr [10]byte) {
-	convert(arr)
-	for i := 0; i < len(arr); i++ {
-		if arr[i] >= 32 && arr[i] <= 126 {
-			z01.PrintRune(rune(arr[i]))
-		} else {
-			z01.PrintRune('.')
-		}
-	}
-	z01.PrintRune('\n')
+func main() {
+	PrintMemory([10]byte{'h', 'e', 'l', 'l', 'o', 16, 21, '*'})
 }
