@@ -27,7 +27,8 @@ func fprime(v int) {
 
 func main() {
 	if len(os.Args) == 2 {
-		if i, err := strconv.Atoi(os.Args[1]); err == nil {
+		i, err := strconv.Atoi(os.Args[1]) 
+		if err == nil {
 			fprime(i)
 		}
 	}
