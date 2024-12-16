@@ -1,4 +1,4 @@
-package piscine
+package main
 
 func Slice(a []string, nbrs ...int) []string {
     length := len(a)
